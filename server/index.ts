@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/submit", submitRoutes);
 
 app.use("/", (req: Request, res: Response) => {
-  res.json({ message: "Hello World!" });
+  res.json({ message: "API is running normally" });
 });
 
 app.listen(port, () => {

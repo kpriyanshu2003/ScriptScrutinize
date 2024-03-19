@@ -15,7 +15,7 @@ datasource db {
 
 model Code {
   id        String   @id @default(uuid())
-  username  String   @unique
+  username  String
   language  Language
   stdin     String?
   source    String

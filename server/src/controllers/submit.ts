@@ -11,12 +11,13 @@ export const createSubmit = async (req: Request, res: Response) => {
       data: {
         username: username,
         language: language,
-        stdin: stdin,
+        stdin: stdin || "",
         source: source,
       },
     });
     return res.status(201).json({ message: "Created", data: newSubmit });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
