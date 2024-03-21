@@ -5,6 +5,12 @@ dotenv.config();
 
 const api = axios.create({
   baseURL: process.env.JUDGE_URL,
+  headers: {
+    "content-type": "application/json",
+    "Content-Type": "application/json",
+    "X-RapidAPI-Key": process.env.JUDGE_KEY,
+    "X-RapidAPI-Host": process.env.JUDGE_HOST,
+  },
 });
 
 export const submitCode = ({
