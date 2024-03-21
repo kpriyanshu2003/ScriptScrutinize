@@ -8,5 +8,5 @@
 
 ## Info
 
-1. The Project is using PostgreSQL instead of MySQL, as there are no deployment options for MySQL ( if avaliable are paid ).
+1. The Project is using PostgreSQL instead of MySQL, as there are no deployment options for MySQL ( if avaliable are paid ). But, built it initially using MySQL.
 2. The Database is deployed on Reder ( maybe it will take time to load the first time )
