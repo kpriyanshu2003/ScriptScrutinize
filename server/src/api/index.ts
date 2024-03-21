@@ -8,8 +8,8 @@ const api = axios.create({
   headers: {
     "content-type": "application/json",
     "Content-Type": "application/json",
-    "X-RapidAPI-Key": process.env.JUDGE_KEY,
-    "X-RapidAPI-Host": process.env.JUDGE_HOST,
+    // "X-RapidAPI-Key": process.env.JUDGE_KEY,
+    // "X-RapidAPI-Host": process.env.JUDGE_HOST,
   },
 });
 
