@@ -6,7 +6,7 @@
   "scripts": {
     "start": "ts-node index.ts",
     "dev": "nodemon index.ts",
-    "postinstall": "prisma generate"
+    "postinstall": "npx prisma migrate dev && npx prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^5.11.0",
