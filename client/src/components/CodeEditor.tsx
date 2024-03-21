@@ -5,8 +5,12 @@ import { Button, Input, Select, SelectItem } from "@nextui-org/react";
 import { langugages } from "@/constants/languages";
 import { createSubmission } from "@/api";
 import { Language, SubmitType } from "@/@types/submission";
+import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { encode } from "js-base64";
 
 function Code() {
+  const router = useRouter();
   const [currlanguage, setCurrLanguage] = useState(langugages[0].name);
   const [value, setValue] = useState("");
   const [formData, setFormData] = useState({ username: "", stdin: "" });
@@ -30,23 +34,42 @@ function Code() {
   );
   const handleSubmit = () => {
     setLoading(true);
-    createSubmission({
-      language: currlanguage as Language,
-      source: value,
-      stdin: formData.stdin,
-      username: formData.username,
-    } as SubmitType)
-      .then((res) => {
-        console.log("res:", res);
-      })
-      .catch((err) => {
-        console.log("err:", err);
-      })
-      .finally(() => setLoading(false));
+    if (!formData.username || !value) {
+      setLoading(false);
+      return toast.error("Username and code is required.");
+    }
+    toast.promise(
+      createSubmission({
+        language: currlanguage as Language,
+        source: encode(value),
+        stdin: encode(formData.stdin),
+        username: formData.username,
+      } as SubmitType)
+        .then((res) => res.data)
+        .catch((err) => {
+          throw new Error(err);
+        })
+        .finally(() => setLoading(false)),
+      {
+        loading: "Saving...",
+        success: (res) => {
+          setTimeout(() => {
+            router.push(`/${res.data.id}`);
+          }, 2000);
+          return (
+            <b>
+              Code Saved! <br /> Redirecting to code page...
+            </b>
+          );
+        },
+        error: <b>Could not save.</b>,
+      }
+    );
   };
 
   return (
     <div className="p-5 ">
+      <Toaster />
       <>
         <div className="flex gap-5 items-center my-5">
           <Input
@@ -87,7 +110,7 @@ function Code() {
         value={value}
         height="400px"
         className="my-5 border"
-        extensions={[extensions]} // Dynamically changing extensions
+        extensions={[extensions]}
         onChange={onChange}
       />
       <Button

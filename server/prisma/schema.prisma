@@ -19,6 +19,7 @@ model Code {
   language  Language
   stdin     String?
   source    String
+  stdout    String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

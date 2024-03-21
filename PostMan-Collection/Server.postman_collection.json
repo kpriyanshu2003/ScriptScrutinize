@@ -1,0 +1,112 @@
+{
+  "info": {
+    "_postman_id": "25ab6356-8fc2-4b83-a296-ad7bde61afa0",
+    "name": "Server",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "29585525"
+  },
+  "item": [
+    {
+      "name": "Submissions",
+      "item": [
+        {
+          "name": "Get All Submissions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{server}}/submit",
+              "host": ["{{server}}"],
+              "path": ["submit"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Submission by Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{server}}/submit/:id",
+              "host": ["{{server}}"],
+              "path": ["submit", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "2886b50b-3bc0-4fdd-98f8-7993c4b511ba"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Submission",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\":\"abcd\",\r\n    \"language\":\"Java\",\r\n    \"stdin\":\"123\",\r\n    \"source\":\"aaaaaaafgndbvvbgs\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{server}}/submit",
+              "host": ["{{server}}"],
+              "path": ["submit"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Code",
+      "item": [
+        {
+          "name": "Get Code by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{server}}/code/c/:id",
+              "host": ["{{server}}"],
+              "path": ["code", "c", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Code Output",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{server}}/code/o/:id",
+              "host": ["{{server}}"],
+              "path": ["code", "o", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "c9ad3525-a922-451f-a3c2-40b21345d711"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
