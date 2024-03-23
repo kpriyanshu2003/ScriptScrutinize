@@ -21,10 +21,7 @@ app.use(express.json());
 app.use(cors(corsConfig));
 app.use(express.urlencoded({ extended: true }));
 app.use((_, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://script-scrutinize.vercel.app"
-  );
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
