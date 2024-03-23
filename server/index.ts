@@ -13,7 +13,7 @@ export const prisma = new PrismaClient();
 import submitRoutes from "./src/routes/submit";
 import codeRoutes from "./src/routes/code";
 
-const corsConfig = { origin: "*", credentials: true };
+const corsConfig = { origin: "*", optionsSuccessStatus: 200 };
 
 // app.use((req, res, next) => setTimeout(next, 3000)); // Simulate 3s delay
 app.use(cors(corsConfig));
