@@ -16,11 +16,20 @@ import codeRoutes from "./src/routes/code";
 const corsConfig = { origin: "*", optionsSuccessStatus: 200 };
 
 // app.use((req, res, next) => setTimeout(next, 3000)); // Simulate 3s delay
-app.use(cors(corsConfig));
 app.use(morgan("dev"));
 app.use(compress());
 app.use(express.json());
+app.use(cors(corsConfig));
 app.use(express.urlencoded({ extended: true }));
+app.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://script-scrutinize.vercel.app"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
 
 app.use("/submit", submitRoutes);
 app.use("/code", codeRoutes);
