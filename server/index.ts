@@ -14,14 +14,13 @@ import submitRoutes from "./src/routes/submit";
 import codeRoutes from "./src/routes/code";
 
 const corsConfig = { origin: "*", optionsSuccessStatus: 200 };
-
 // app.use((req, res, next) => setTimeout(next, 3000)); // Simulate 3s delay
 app.use(morgan("dev"));
 app.use(compress());
 app.use(express.json());
 app.use(cors(corsConfig));
 app.use(express.urlencoded({ extended: true }));
-app.use((req, res, next) => {
+app.use((_, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
     "https://script-scrutinize.vercel.app"
@@ -34,7 +33,7 @@ app.use((req, res, next) => {
 app.use("/submit", submitRoutes);
 app.use("/code", codeRoutes);
 
-app.use("/", (req: Request, res: Response) => {
+app.use("/", (_, res) => {
   res.json({ message: "API is running normally" });
 });
 
